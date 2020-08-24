@@ -14,14 +14,14 @@ import org.springframework.web.client.RestTemplate;
 		"com.netflix.client.config.IClientConfig"
 })
 @RestController
-@RibbonClient(name="my-app", configuration=RibbonConfig.class)
+@RibbonClient(name="eureka-client", configuration=RibbonConfig.class)
 public class RibbonBalancerApplication {
 
 	@Autowired
 	private RestTemplate restTemplate;
 	@GetMapping("/ribbon-load-balancing")
 	public String getDate(){
-		return restTemplate.getForObject("http://my-app/app", String.class);
+		return restTemplate.getForObject("http://eureka-client/app", String.class);
 	}
 	@Bean
 	@LoadBalanced
